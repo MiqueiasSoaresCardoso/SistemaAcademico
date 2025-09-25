@@ -12,6 +12,7 @@ class Perfil(AbstractUser):
     email = models.EmailField(unique=True)
     senha = models.CharField(max_length=10, blank=False, null=False)
     ativo_perfil = models.BooleanField(default=True)
+    #era bom ter um nome
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['tipo_perfil']
 
