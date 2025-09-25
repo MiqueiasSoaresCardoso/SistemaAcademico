@@ -8,7 +8,7 @@ from django.db import models
 class Perfil(AbstractUser):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     codigo_perfil = models.CharField(max_length=10, blank=False, null=False,unique=True)
-    tipo_perfil = models.CharField(max_length=20, blank=False, null=False, choices=[('Discente',"Discente"),('Coordenador','Coordenador'),('Professor','Professor')])
+    tipo_perfil = models.CharField(max_length=20, blank=False, null=False, choices=[('Discente',"Discente"),('Coordenador','Coordenador'),('Professor','Professor'),('Gerente','Gerente')])
     email = models.EmailField(unique=True)
     senha = models.CharField(max_length=10, blank=False, null=False)
     ativo_perfil = models.BooleanField(default=True)
