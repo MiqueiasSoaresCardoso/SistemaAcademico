@@ -17,4 +17,9 @@ class PerfilSerializer(serializers.ModelSerializer):
         instance.save()
         return instance
 
+    def validate_codigo_perfil(self, value):
+        if Perfil.objects.filter(codigo_perfil=value, ativo=True).exists():
+            raise serializers.ValidationError("Já existe um Perfil ativo com este código.")
+        return value
+
 
