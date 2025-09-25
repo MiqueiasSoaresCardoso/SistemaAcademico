@@ -1,10 +1,7 @@
 from django.db.models import Sum
 from django.db.models.functions import Coalesce
-
 from .models import Disciplina
 from rest_framework import serializers
-
-from ..curso.models import Curso
 
 
 class DisciplinaSerializer(serializers.ModelSerializer):
@@ -29,4 +26,13 @@ class DisciplinaSerializer(serializers.ModelSerializer):
                 f"A soma das cargas horárias das disciplinas ({soma_carga_horaria + nova_carga_h}"
                 f"ultrapassa a carga horária total do curso ({curso.carga_horaria})"
             )
+
+        if curso.ativo_curso is False:
+            raise serializers.ValidationError("Não é possivel associar a disciplina a este curso! Motivo: Curso Inativo")
+
         return data
+
+    def validate_codigo_disciplina(self, value):
+        if Disciplina.objects.filter(codigo_disciplina = value, ativo_disicplina=True):
+            raise serializers.ValidationError("Não é permitido disciplinas com o mesmo código")
+
