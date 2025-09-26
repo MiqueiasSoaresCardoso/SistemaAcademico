@@ -8,6 +8,6 @@ class CursoSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
     def validate_codigo_curso(self, value):
-        if Curso.objects.filter(codigo_curso=value, ativo=True).exists():
+        if Curso.objects.filter(codigo_curso=value, ativo_curso=True).exists():
             raise serializers.ValidationError("Já existe um curso ativo com este código.")
         return value

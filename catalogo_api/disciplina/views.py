@@ -1,5 +1,6 @@
+import django_filters
 from django.shortcuts import render
-from rest_framework import viewsets, permissions
+from rest_framework import viewsets,filters
 from rest_framework.permissions import IsAuthenticated, SAFE_METHODS
 
 from permissions import IsGerente
@@ -17,6 +18,10 @@ class DisciplinaViewSet(viewsets.ModelViewSet):
     queryset = Disciplina.objects.all()
     serializer_class = DisciplinaSerializer
     permission_classes = [IsGerente]
+    #adicionando filtros
+    filter_backends = [filters.SearchFilter,django_filters.rest_framework.DjangoFilterBackend]
+    filterset_fields = ['ativo_disciplina','curso']
+    search_fields = ['nome_disciplina','codigo_disciplina']
 
     def get_permissions(self):
         if self.action == 'create':

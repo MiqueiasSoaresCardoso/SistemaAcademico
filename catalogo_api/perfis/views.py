@@ -1,17 +1,20 @@
 from rest_framework.decorators import action
-from rest_framework import viewsets
+from rest_framework import viewsets, filters
 from rest_framework.permissions import IsAuthenticated, AllowAny, SAFE_METHODS
 from rest_framework.response import Response
 from perfis.models import Perfil
 from perfis.serializers import PerfilSerializer
 from permissions import IsGerente
-
+import django_filters
 
 # Create your views here.
 class PerfilViewSet(viewsets.ModelViewSet):
     queryset = Perfil.objects.all()
     serializer_class = PerfilSerializer
     permission_classes = [IsAuthenticated]
+    filter_backends = [filters.SearchFilter, django_filters.rest_framework.DjangoFilterBackend]
+    filterset_fields = ['ativo_perfil', 'codigo_perfil']
+    search_fields = ['email', 'codigo_perfil']
 
     def get_permissions(self):
         if self.action == 'create':

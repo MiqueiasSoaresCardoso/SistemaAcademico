@@ -1,5 +1,5 @@
-from rest_framework import viewsets
-
+from rest_framework import viewsets, filters
+import django_filters
 from permissions import IsGerente
 from .models import Curso
 from .serializers import CursoSerializer
@@ -12,6 +12,9 @@ class CursoViewSet(viewsets.ModelViewSet):
     queryset = Curso.objects.all()
     serializer_class = CursoSerializer
     permission_classes = [IsGerente]
+    filter_backends = [filters.SearchFilter, django_filters.rest_framework.DjangoFilterBackend]
+    filterset_fields = ['ativo_curso', 'codigo_curso']
+    search_fields = ['nome_curso', 'codigo_curso']
 
     def get_permissions(self):
         if self.action == 'create':
@@ -23,14 +26,14 @@ class CursoViewSet(viewsets.ModelViewSet):
     # endpoints personalizados para ativação/inativação
     @action(detail=True, methods=['put', 'patch'])
     def inativar(self, request, pk=None):
-        disciplina = Curso.get_object()
-        disciplina.ativo_disciplina = False
-        disciplina.save()
-        return Response({'Disciplina': disciplina + 'inativada com sucesso'})
+        curso = Curso.get_object()
+        curso.ativo_curso = False
+        curso.save()
+        return Response({'Curso': curso + 'inativado com sucesso'})
 
     @action(detail=True, methods=['put', 'patch'])
     def ativar(self, request, pk=None):
-        disciplina = Curso.get_object()
-        disciplina.ativo_disciplina = True
-        disciplina.save()
-        return Response({'Disciplina': disciplina + 'ativada com sucesso'})
+        curso = Curso.get_object()
+        curso.ativo_curso = True
+        curso.save()
+        return Response({'Curso': curso + 'ativado com sucesso'})
