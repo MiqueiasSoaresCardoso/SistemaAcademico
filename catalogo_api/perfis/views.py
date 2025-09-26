@@ -2,9 +2,9 @@ from rest_framework.decorators import action
 from rest_framework import viewsets
 from rest_framework.permissions import IsAuthenticated, AllowAny, SAFE_METHODS
 from rest_framework.response import Response
-from catalogo_api.perfis.models import Perfil
-from catalogo_api.perfis.serializers import PerfilSerializer
-from catalogo_api.permissions import IsGerente
+from perfis.models import Perfil
+from perfis.serializers import PerfilSerializer
+from permissions import IsGerente
 
 
 # Create your views here.

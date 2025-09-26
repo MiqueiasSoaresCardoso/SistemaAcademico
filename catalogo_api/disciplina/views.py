@@ -1,12 +1,14 @@
 from django.shortcuts import render
 from rest_framework import viewsets, permissions
 from rest_framework.permissions import IsAuthenticated, SAFE_METHODS
+
+from permissions import IsGerente
 from .serializers import DisciplinaSerializer
 from .models import Disciplina
 from rest_framework.response import Response
 from rest_framework.decorators import action
 
-from ..permissions import IsGerente
+
 
 
 # Create your views here.

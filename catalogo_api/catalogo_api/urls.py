@@ -3,9 +3,9 @@ from rest_framework.routers import DefaultRouter
 from django.urls import path, include
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
-from catalogo_api.curso.views import CursoViewSet
-from catalogo_api.disciplina.views import DisciplinaViewSet
-from catalogo_api.perfis.views import PerfilViewSet
+from curso.views import CursoViewSet
+from disciplina.views import DisciplinaViewSet
+from perfis.views import PerfilViewSet
 
 router = DefaultRouter()
 router.register(r'cursos',CursoViewSet)

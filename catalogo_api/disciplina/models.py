@@ -1,10 +1,6 @@
 import uuid
-
 from django.db import models
-
-from catalogo_api.curso.models import Curso
-
-
+from curso.models import Curso
 # Create your models here.
 
 class Disciplina(models.Model):

@@ -1,7 +1,5 @@
-
-
-from catalogo_api.curso.models import Curso
-from catalogo_api.disciplina import serializers
+from curso.models import Curso
+from rest_framework import serializers
 
 
 class CursoSerializer(serializers.ModelSerializer):
