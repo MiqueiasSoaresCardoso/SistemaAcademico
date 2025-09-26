@@ -9,9 +9,6 @@ from .models import Disciplina
 from rest_framework.response import Response
 from rest_framework.decorators import action
 
-
-
-
 # Create your views here.
 
 class DisciplinaViewSet(viewsets.ModelViewSet):
@@ -33,14 +30,14 @@ class DisciplinaViewSet(viewsets.ModelViewSet):
     #endpoints personalizados para ativação/inativação
     @action(detail=True,methods=['put','patch'])
     def inativar(self,request, pk=None):
-        disciplina = Disciplina.get_object()
+        disciplina = self.get_object()
         disciplina.ativo_disciplina = False
         disciplina.save()
-        return Response({'Disciplina':disciplina + 'inativada com sucesso'})
+        return Response({f'Disciplina {disciplina} inativada com sucesso'})
 
     @action(detail=True, methods=['put', 'patch'])
     def ativar(self,request,pk=None):
-        disciplina = Disciplina.get_object()
+        disciplina = self.get_object()
         disciplina.ativo_disciplina = True
         disciplina.save()
-        return Response({'Disciplina': disciplina + 'ativada com sucesso'})
+        return Response({f'Disciplina {disciplina} ativada com sucesso'})

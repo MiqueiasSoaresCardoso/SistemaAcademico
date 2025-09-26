@@ -26,14 +26,14 @@ class CursoViewSet(viewsets.ModelViewSet):
     # endpoints personalizados para ativação/inativação
     @action(detail=True, methods=['put', 'patch'])
     def inativar(self, request, pk=None):
-        curso = Curso.get_object()
+        curso = self.get_object()
         curso.ativo_curso = False
         curso.save()
-        return Response({'Curso': curso + 'inativado com sucesso'})
+        return Response({f'Curso: {curso} inativado com sucesso'})
 
     @action(detail=True, methods=['put', 'patch'])
     def ativar(self, request, pk=None):
-        curso = Curso.get_object()
+        curso = self.get_object()
         curso.ativo_curso = True
         curso.save()
-        return Response({'Curso': curso + 'ativado com sucesso'})
+        return Response({f'Curso: {curso} ativado com sucesso'})
