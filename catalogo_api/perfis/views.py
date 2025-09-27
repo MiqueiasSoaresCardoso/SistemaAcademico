@@ -6,8 +6,9 @@ from perfis.models import Perfil
 from perfis.serializers import PerfilSerializer
 from permissions import IsGerente
 import django_filters
-
+from drf_spectacular.utils import extend_schema
 # Create your views here.
+@extend_schema(tags=["Perfis"])
 class PerfilViewSet(viewsets.ModelViewSet):
     queryset = Perfil.objects.all()
     serializer_class = PerfilSerializer

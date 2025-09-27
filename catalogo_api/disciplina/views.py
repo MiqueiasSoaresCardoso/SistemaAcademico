@@ -1,5 +1,6 @@
 import django_filters
 from django.shortcuts import render
+from drf_spectacular.utils import extend_schema
 from rest_framework import viewsets,filters
 from rest_framework.permissions import IsAuthenticated, SAFE_METHODS
 
@@ -10,7 +11,7 @@ from rest_framework.response import Response
 from rest_framework.decorators import action
 
 # Create your views here.
-
+@extend_schema(tags=["Disciplinas"])
 class DisciplinaViewSet(viewsets.ModelViewSet):
     queryset = Disciplina.objects.all()
     serializer_class = DisciplinaSerializer

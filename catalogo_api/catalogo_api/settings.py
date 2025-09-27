@@ -44,7 +44,8 @@ INSTALLED_APPS = [
     'perfis',
     'curso',
     'disciplina',
-    'django_filters'
+    'django_filters',
+    'drf_spectacular'
 ]
 
 MIDDLEWARE = [
@@ -91,8 +92,22 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.IsAuthenticated',
     ),
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 10
+}
+
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'Catálogo de Cursos & Disciplinas API',
+    'DESCRIPTION': 'API RESTful para gerenciamento de Cursos, Disciplinas e Perfis para o Processo Seletivo UNIFIP.',
+    'VERSION': '1.0.0',
+    'SERVE_INCLUDE_SCHEMA': False,
+    # Outras configurações que você pode adicionar
+    'TAGS': [
+        {'name': 'Perfis', 'description': 'Endpoints para gerenciamento de perfis.'},
+        {'name': 'Cursos', 'description': 'Endpoints para gerenciamento de cursos.'},
+        {'name': 'Disciplinas', 'description': 'Endpoints para gerenciamento de disciplinas.'},
+    ],
 }
 
 AUTH_USER_MODEL = 'perfis.Perfil'

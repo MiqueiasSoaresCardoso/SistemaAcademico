@@ -6,8 +6,9 @@ from .serializers import CursoSerializer
 from rest_framework.permissions import IsAuthenticated, SAFE_METHODS
 from rest_framework.response import Response
 from rest_framework.decorators import action
-
+from drf_spectacular.utils import extend_schema
 # Create your views here.
+@extend_schema(tags=["Cursos"])
 class CursoViewSet(viewsets.ModelViewSet):
     queryset = Curso.objects.all()
     serializer_class = CursoSerializer

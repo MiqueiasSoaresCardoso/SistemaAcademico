@@ -5,7 +5,6 @@ from rest_framework import serializers
 from .models import Curso
 from .models import Disciplina
 
-
 class DisciplinaSerializer(serializers.ModelSerializer):
     class Meta:
         model = Disciplina
