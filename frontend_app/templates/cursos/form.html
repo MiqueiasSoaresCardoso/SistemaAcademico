@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block title %}Novo Curso{% endblock %}
+{% block content %}
+<h2>Novo Curso</h2>
+<form method="post" action="{% url 'cursos_create' %}">
+    {% csrf_token %}
+    <div class="mb-3">
+        <label>Nome do Curso</label>
+        <input type="text" name="nome_curso" class="form-control" required>
+    </div>
+    <div class="mb-3">
+        <label>Código do Curso</label>
+        <input type="text" name="codigo_curso" class="form-control" required>
+    </div>
+    <div class="mb-3">
+        <label>Carga_Horaria</label>
+        <input type="text" name="carga_horaria" class="form-control" required>
+    </div>
+    <button class="btn btn-primary">Salvar</button>
+</form>
+{% endblock %}

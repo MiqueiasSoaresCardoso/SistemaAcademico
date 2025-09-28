@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block title %}Cursos{% endblock %}
+{% block content %}
+<h2>Perfis</h2>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Tipo</th>
+            <th>Email</th>
+            <th>Código</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for perfil in perfis %}
+            <tr>
+                <td>{{perfil.tipo_perfil}}</td>
+                <td>{{ perfil.email }}</td>
+                <td>{{ perfil.codigo_perfil }}</td>
+            </tr>
+        {% empty %}
+            <tr><td colspan="2">Nenhum curso encontrado</td></tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

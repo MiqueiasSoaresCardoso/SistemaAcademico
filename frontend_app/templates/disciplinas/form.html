@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block title %}Novo Curso{% endblock %}
+{% block content %}
+<h2>Nova Disciplina</h2>
+<form method="post" action="{% url 'disciplina_create' %}">
+    {% csrf_token %}
+    <div class="mb-3">
+        <label>Nome da Disciplina</label>
+        <input type="text" name="nome_disciplina" class="form-control" required>
+    </div>
+    <div class="mb-3">
+        <label>Código da Disciplina</label>
+        <input type="text" name="codigo_disciplina" class="form-control" required>
+    </div>
+    <div class="mb-3">
+        <label>Carga Horaria da Disciplina</label>
+        <input type="text" name="carga_horaria" class="form-control" required>
+    </div>
+    <div class="mb-3">
+        <label>Curso</label>
+        <input type="text" name="curso" placeholder="UUID do curso" required><br>
+    </div>
+    <button class="btn btn-primary">Salvar</button>
+</form>
+{% endblock %}
